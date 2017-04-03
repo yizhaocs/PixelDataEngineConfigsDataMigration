@@ -15,8 +15,8 @@ import java.util.Scanner;
 2:flip the order of token rule
 3:flp the order of set rule
 4:flip the order of map rule
-5:replacing tokenize with set
-6:replacing “map|tableName|keyId:position” with “map:tableName|keyId:position”
+5:replacing tokenize with set // manual changed
+6:replacing “map|tableName|keyId:position” with “map:tableName|keyId:position”  // manual changed
 7:modified all condition rules from “ruleName|position:targetString” to “ruleName|keyid:position:targetString”
 */
 
@@ -41,7 +41,7 @@ public class DataMigration {
         colonSpliter.setDelimiterChar(':');
 
 
-        Scanner s = new Scanner(new File("/Users/yzhao/Desktop/03292017/pixel_data_engine_configs_1.csv"));
+        Scanner s = new Scanner(new File("/Users/yzhao/Desktop/comparsion_test/sql_migration/pixel_data_engine_configs.csv"));
 
         /**
          * scan the file line by line
