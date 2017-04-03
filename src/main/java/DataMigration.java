@@ -9,9 +9,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Created by yzhao on 3/29/17.
- */
+/*
+
+1:replacing all split1/split2 with split
+2:flip the order of token rule
+3:flp the order of set rule
+4:flip the order of map rule
+5:replacing tokenize with set
+6:replacing “map|tableName|keyId:position” with “map:tableName|keyId:position”
+7:modified all condition rules from “ruleName|position:targetString” to “ruleName|keyid:position:targetString”
+*/
+
 public class DataMigration {
     public static void main(String[] args){
         DataMigration mDataMigration = new DataMigration();
