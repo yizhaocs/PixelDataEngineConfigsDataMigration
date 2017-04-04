@@ -12,8 +12,8 @@ import java.util.Scanner;
 /*
 
 1:replacing all split1/split2 with split
-2:flip the order of token rule
-3:flp the order of set rule
+2:token rule to swap like : [&,=,?] -> [?,&,=]
+3:flip the order of set rule
 4:flip the order of map rule
 5:replacing tokenize with set // manual changed
 6:replacing “map|tableName|keyId:position” with “map:tableName|keyId:position”  // manual changed
@@ -75,7 +75,14 @@ public class DataMigration {
             }else if(parserRuleName.equals("split2")){
                 parserRuleName = "split";
             } else if(parserRuleName.equals("token")){
-                Collections.reverse(parserTargetKeyStringList);
+                // [&,=,?] -> [?,&,=]
+                String first = parserTargetKeyStringList.get(0);
+                String second = parserTargetKeyStringList.get(1);
+                String third = parserTargetKeyStringList.get(2);
+                parserTargetKeyStringList.set(0, third);
+                parserTargetKeyStringList.set(1,first);
+                parserTargetKeyStringList.set(2,second);
+                //Collections.reverse(parserTargetKeyStringList);
             }
 
             parserRuleString = parserRuleName;
