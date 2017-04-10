@@ -138,7 +138,11 @@ public class DataMigration {
             String actionRuleSplit[] = actionRuleString.split("\\|", 2);
             String actionRuleName = actionRuleSplit[0];
             List<String> actionTargetKeyStringList = null;
-
+            String previousName = null;
+            previousName = actionRuleName;
+            if(actionRuleName.equals("tokenize")){
+                actionRuleName = "set";
+            }
             actionRuleString = actionRuleName;
             if(actionRuleSplit.length == 2){
                 actionTargetKeyStringList = verticalBarSpliter.reset(actionRuleSplit[1]).getTokenList();
@@ -150,20 +154,19 @@ public class DataMigration {
                 }
                 for(int i = 0; i < actionTargetKeyStringList.size(); i++){
                     if (i + 1 < actionTargetKeyStringList.size()) {
-                        if(actionRuleName.equals("set") || actionRuleName.contains("map:")){
+                        if((actionRuleName.equals("set") && !previousName.equals("tokenize")) || actionRuleName.contains("map:")){
                             List<String> tmp = colonSpliter.reset(actionTargetKeyStringList.get(i)).getTokenList();
                             actionRuleString += tmp.get(1) + ":" + tmp.get(0) + "|";
-                        }else {
+                        }else{
                             actionRuleString += actionTargetKeyStringList.get(i) + "|";
                         }
                     } else {
-                        if(actionRuleName.equals("set") || actionRuleName.contains("map:")){
+                        if((actionRuleName.equals("set") && !previousName.equals("tokenize")) || actionRuleName.contains("map:")){
                             List<String> tmp = colonSpliter.reset(actionTargetKeyStringList.get(i)).getTokenList();
                             actionRuleString += tmp.get(1) + ":" + tmp.get(0);
                         }else {
                             actionRuleString += actionTargetKeyStringList.get(i);
                         }
-
                     }
                 }
 
